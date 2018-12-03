@@ -1,6 +1,5 @@
 const CompanyModel= require('../models/Company')
 const JobModel=require('../models/Job')
-
 class JobController {
     static showAll(req,res){
         JobModel
@@ -38,7 +37,6 @@ class JobController {
     }
     static showByFilter(req,res){
         let filterValue=[]
-         
         req.body.name && filterValue.push( { name: new RegExp(req.body.name, 'i') } ) 
         req.body.function && filterValue.push( { function: new RegExp(req.body.function, 'i') } )
         req.body.description &&  filterValue.push( { description: new RegExp(req.body.description, 'i') } ) 
@@ -54,8 +52,7 @@ class JobController {
         req.body.companyCity && filterValue.push({ "Company.city": new RegExp(req.body.companyCity, 'i') }) 
         req.body.companyTotalemployees && filterValue.push({ "Company.totalEmployees": {$gte: req.body.companyTotalemployees} }) 
 
-        //console.log(filterValue)
-        if(filterValue.length==0){
+        if(filterValue.length===0){
             JobModel.aggregate([
                 { "$unwind": "$companyid" },
                 {
@@ -208,10 +205,6 @@ class JobController {
             res.status(500).json( { message: 'Delete Job failed'} )
         })  
     }
-    // static TestData(req,res){
-       
-    // }
-
 }
 
 module.exports= JobController;

@@ -14,6 +14,17 @@ class JobController {
             res.status(500).json({ message: `Get data Jobs failed` });
         })
     }
+    static showGiveAll(req,res){
+        JobModel
+        .find({})
+        .populate('companyid').limit(10) 
+        .then((result) => {
+            res.status(200).json({ message:`Get data Jobs successfully`, data:result });
+        })
+        .catch((err) => {
+            res.status(500).json({ message: `Get data Jobs failed` });
+        })
+    }
     static showDetail(req,res){
         JobModel
         .findOne({ _id: req.params.id })
@@ -151,7 +162,6 @@ class JobController {
             req.body.minAge ? { age:req.body.minAge} : null,
             req.body.maxAge ? { age:req.body.maxAge} : null,
             req.body.gender ? { gender:req.body.gender} : null,
-            req.body.companyid ? { companyid:req.body.companyid} : null,
         );
         JobModel
         .findOneAndUpdate(

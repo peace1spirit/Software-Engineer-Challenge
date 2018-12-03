@@ -68,7 +68,21 @@ describe('Job GET', function () {
       done()
     })
   })
-
+  it('/GET /job/all it should get all Jobs data ', function (done) {
+    chai.request(server)
+    .get('/job/all')
+    .end(function(err, res) {
+      res.body.should.be.an('object').to.have.property('message')
+      res.body.should.be.an('object').to.have.property('data').with.lengthOf(1).should.be.an('object')
+      res.body.data[0].should.have.property('name')
+      res.body.data[0].should.have.property('location')
+      res.body.data[0].companyid.should.have.property('name')
+      res.body.data[0].companyid.should.have.property('industry')
+      res.body.message.should.equal('Get data Jobs successfully')
+      res.should.have.status(200)
+      done()
+    })
+  })
   it('/GET /job/detail it should get one job detail data ', function (done) {
     chai.request(server)
     .get('/job/detail/'+id_job)

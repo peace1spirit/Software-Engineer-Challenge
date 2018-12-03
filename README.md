@@ -21,9 +21,6 @@ $ npm test (server side)
 #### result should give data companies  
 
 
-
-
-
 | Route    | HTTP | Description              |
 | -------- | ---- | ------------------------ |
 | /company | POST | Input a new data Company |
@@ -144,7 +141,7 @@ $ npm test (server side)
 ###### gender: e.g. wanita (put in req.body)
 
 
-| Route    | HTTP   | Description     |
-| -------- | ------ | --------------- |
-| /job/:id | Delete | delete data job |
+| Route    | HTTP   | Description       |
+| -------- | ------ | ----------------- |
+| /job/:id | Delete | delete a data job |
 
